@@ -6,6 +6,9 @@
     D. API/
         a. __init__.py
         b. api.py
+            i. Vimeo API
+            ii. Square API
+            iii. Yandex MapKit API
     E. Auth/
         a. static/
         b. templates/
