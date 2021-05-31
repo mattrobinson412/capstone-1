@@ -1,11 +1,10 @@
 """External API calls for TES catalog application."""
 
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, g
 import requests
 import sys
 sys.path.append("C:/Users/12392/Desktop/.vscode/Springboard/Projects/capstones/capstone-1/tes")
-from models import db, connect_db, User, Status, Donation, Class, Lecture, Syllabus, Document, Church, Graduate, Staff, Resource
-
+from ..models import *
 
 api = Blueprint('api', __name__)
 
@@ -19,11 +18,11 @@ def get_users():
 
     #  =====================================>
     users = [user.serialize() for user in User.query.all()]
-    return jsonify(users=all_churches)
+    return jsonify(users=users)
 
 
 @api.route('/users/<int:id>')
-def get_users(id):
+def get_user(id):
     """Returns JSON for one particular user."""
 
      # TO-DO: Restrict access to '/api' routes!
@@ -42,11 +41,12 @@ def create_user():
 
     #  =====================================>
 
-    new_user = User(name=request.json["name"],
-                    location=request.json["location"],
+    new_user = User(first_name=request.json["first_name"],
+                    last_name=request.json["last_name"],
+                    password=request.json["password"],
                     phone_number=request.json["phone_number"],
                     email=request.json["email"],
-                    website=request.json["website"])
+                    status_id=request.json["status_id"])
     db.session.add(new_user)
     db.session.commit()
     response_json = jsonify(user=new_user.serialize())
@@ -54,7 +54,7 @@ def create_user():
 
 
 @api.route('/users/<int:id>', methods=["PATCH"])
-def update_class(id):
+def update_user(id):
     """Updates a particular user and responds w/ JSON of that user."""
 
      # TO-DO: Restrict access to '/api' routes!
@@ -62,17 +62,18 @@ def update_class(id):
     #  =====================================>
 
     user = User.query.get_or_404(id)
-    user.name = request.json.get('name', user.name)
-    user.location = request.json.get('location', user.location)
+    user.first_name = request.json.get('first_name', user.first_name)
+    user.last_name = request.json.get('last_name', user.last_name)
+    user.password = request.json.get('password', user.password)
     user.phone_number = request.json.get('phone_number', user.phone_number)
     user.email = request.json.get('email', user.email)
-    user.website = request.json.get('website', user.website)
+    user.status_id = request.json.get('status_id', user.status_id)
     db.session.commit()
     return jsonify(user=user.serialize())
 
 
 @api.route('/users/<int:id>', methods=["DELETE"])
-def delete_class(id):
+def delete_user(id):
     """Deletes a particular user."""
 
      # TO-DO: Restrict access to '/api' routes!
@@ -94,7 +95,7 @@ def get_statuses():
 
     #  =====================================>
     statuses = [status.serialize() for status in Status.query.all()]
-    return jsonify(statuses=all_statuses)
+    return jsonify(statuses=statuses)
 
 
 @api.route('/statuses/<int:id>')
@@ -161,7 +162,7 @@ def get_donations():
 
     #  =====================================>
     donations = [donation.serialize() for donation in Donation.query.all()]
-    return jsonify(donations=all_donations)
+    return jsonify(donations=donations)
 
 
 @api.route('/donations/<int:id>')
@@ -238,7 +239,7 @@ def get_lectures():
 
     #  =====================================>
     lectures = [lecture.serialize() for lecture in Lecture.query.all()]
-    return jsonify(lectures=all_lectures)
+    return jsonify(lectures=lectures)
 
 
 @api.route('/lectures/<int:id>')
@@ -313,7 +314,7 @@ def get_syllabi():
 
     #  =====================================>
     syllabi = [syllabus.serialize() for syllabus in Syllabus.query.all()]
-    return jsonify(syllabi=all_syllabus)
+    return jsonify(syllabi=syllabi)
 
 
 @api.route('/syllabi/<int:id>')
@@ -362,7 +363,7 @@ def update_syllabus(id):
 
 
 @api.route('/syllabi/<int:id>', methods=["DELETE"])
-def delete_class(id):
+def delete_syllabus(id):
     """Deletes a particular syllabus."""
 
      # TO-DO: Restrict access to '/api' routes!
@@ -384,7 +385,7 @@ def get_documents():
 
     #  =====================================>
     documents = [document.serialize() for document in Document.query.all()]
-    return jsonify(documents=all_documents)
+    return jsonify(documents=documents)
 
 
 @api.route('/documents/<int:id>')
@@ -433,7 +434,7 @@ def update_document(id):
 
 
 @api.route('/documents/<int:id>', methods=["DELETE"])
-def delete_class(id):
+def delete_document(id):
     """Deletes a particular document."""
 
      # TO-DO: Restrict access to '/api' routes!
@@ -455,7 +456,7 @@ def get_graduates():
 
     #  =====================================>
     graduates = [graduate.serialize() for graduate in Graduate.query.all()]
-    return jsonify(graduates=all_graduates)
+    return jsonify(graduates=graduates)
 
 
 @api.route('/graduates/<int:id>')
@@ -530,7 +531,7 @@ def get_staff():
 
     #  =====================================>
     staff = [member.serialize() for member in Staff.query.all()]
-    return jsonify(staff=all_staff)
+    return jsonify(staff=staff)
 
 
 @api.route('/staff/<int:id>')
@@ -605,7 +606,7 @@ def get_classes():
 
     #  =====================================>
     classes = [course.serialize() for course in Class.query.all()]
-    return jsonify(classes=all_classes)
+    return jsonify(classes=classes)
 
 
 @api.route('/classes/<int:id>')
@@ -676,7 +677,7 @@ def get_churches():
 
     #  =====================================>
     churches = [church.serialize() for church in Church.query.all()]
-    return jsonify(churches=all_churches)
+    return jsonify(churches=churches)
 
 
 @api.route('/churches/<int:id>')
@@ -711,7 +712,7 @@ def create_church():
 
 
 @api.route('/churches/<int:id>', methods=["PATCH"])
-def update_class(id):
+def update_church(id):
     """Updates a particular church and responds w/ JSON of that church."""
 
      # TO-DO: Restrict access to '/api' routes!
@@ -729,7 +730,7 @@ def update_class(id):
 
 
 @api.route('/churches/<int:id>', methods=["DELETE"])
-def delete_class(id):
+def delete_church(id):
     """Deletes a particular church."""
 
      # TO-DO: Restrict access to '/api' routes!
@@ -751,7 +752,7 @@ def get_resources():
 
     #  =====================================>
     resources = [resource.serialize() for resource in Resource.query.all()]
-    return jsonify(resources=all_classes)
+    return jsonify(resources=resources)
 
 
 @api.route('/resources/<int:id>')
@@ -802,7 +803,7 @@ def update_resource(id):
 
 
 @api.route('/resources/<int:id>', methods=["DELETE"])
-def delete_class(id):
+def delete_resource(id):
     """Deletes a particular resource."""
 
      # TO-DO: Restrict access to '/api' routes!
@@ -815,3 +816,74 @@ def delete_class(id):
     return jsonify(message="Deleted!")
 
 
+# REST routes for CONTACTS ======================================================>
+@api.route('/contacts')
+def get_contacts():
+    """Returns JSON w/ all contacts."""
+
+    # TO-DO: Restrict access to '/api' routes!
+
+    #  =====================================>
+    contacts = [contact.serialize() for contact in Contact.query.all()]
+    return jsonify(contacts=contacts)
+
+
+@api.route('/contacts/<int:id>')
+def get_contact(id):
+    """Returns JSON for one particular contact."""
+
+     # TO-DO: Restrict access to '/api' routes!
+
+    #  =====================================>
+
+    contact = Contact.query.get_or_404(id)
+    return jsonify(contact=contact.serialize())
+
+
+@api.route('/contacts', methods=['POST'])
+def create_contact():
+    """Creates a new contact and returns JSON of that created contact."""
+
+     # TO-DO: Restrict access to '/api' routes!
+
+    #  =====================================>
+
+    new_contact = Contact(first_name=request.json["first_name"],
+                    last_name=request.json["last_name"],
+                    email=request.json["email"],
+                    message=request.json["message"])
+    db.session.add(new_contact)
+    db.session.commit()
+    response_json = jsonify(contact=new_contact.serialize())
+    return (response_json, 201)
+
+
+@api.route('/contacts/<int:id>', methods=["PATCH"])
+def update_contact(id):
+    """Updates a particular contact and responds w/ JSON of that contact."""
+
+     # TO-DO: Restrict access to '/api' routes!
+
+    #  =====================================>
+
+    contact = Contact.query.get_or_404(id)
+    contact.first_name = request.json.get('first_name', contact.first_name)
+    contact.last_name = request.json.get('last_name', contact.last_name)
+    contact.email = request.json.get('email', contact.email)
+    contact.message = request.json.get('message', contact.message)
+    db.session.commit()
+    return jsonify(contact=contact.serialize())
+
+
+@api.route('/contacts/<int:id>', methods=["DELETE"])
+def delete_contact(id):
+    """Deletes a particular contact."""
+
+     # TO-DO: Restrict access to '/api' routes!
+
+    #  =====================================>
+
+    contact = Contact.query.get_or_404(id)
+    db.session.delete(contact)
+    db.session.commit()
+    return jsonify(message="Deleted!")

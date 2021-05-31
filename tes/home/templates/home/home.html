@@ -1,0 +1,50 @@
+{% extends 'home/base.html' %}
+
+{% block title %}The Expositors Archive{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid"></div>
+
+    <div class="row m-2 p-5" id="top">
+        <h1 class="text-primary text-center"><i>The Expositors Library</i></h1>
+    </div>
+
+    <div class="row m-2 p-1" style="height:400px;" id="banner">
+        <div class="jumbotron jumbotron-fluid bg-primary">
+            <div class="container">
+                <h1 class="display-4 text-center text-warning">Welcome to the Archives.</h1>
+                <p class="lead text-center text-light">Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+                    Provident rerum minima soluta. Dolorum vel atque quisquam corrupti inventore, 
+                    accusantium enim eaque! Nihil quo, corporis laborum error adipisci eos et delectus.
+                </p>
+                <div class="login-button text-center">
+                    <a role="button" class="btn btn-outline-warning btn-lg" href="/home/login">Login</a>
+                </div>
+            </div> 
+          </div>
+    </div>
+
+    <div class="row m-2 p-5" id="contact">
+        <div class="card text-center">
+            <div class="card-header">
+              FAQ
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Are you an Admin, Alumni, or Current Student that needs access?</h5>
+              <p class="card-text">Send us a message so we can provide a solution as fast as we can.</p>
+              <a href="/home/contact" class="btn btn-warning">Contact Us</a>
+            </div>
+            <div class="card-footer text-muted">
+              For any acute needs, send an email directly to <a href="mailto: danr@expositors.org">danr@expositors.org</a>.
+            </div>
+        </div>
+    </div>
+        
+</div>
+
+
+
+
+
+{% endblock %}

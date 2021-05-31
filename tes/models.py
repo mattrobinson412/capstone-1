@@ -62,7 +62,7 @@ class User(db.Model):
         u = self
         return f"<User {u.id} {u.first_name} {u.last_name} {u.password} {u.phone_number} {u.email} {u.status_id}>"
 
-     def serialize(self):
+    def serialize(self):
         """Returns a dict representation of a 'User' instance that can be turned into JSON."""
 
         return {
@@ -88,7 +88,7 @@ class Status(db.Model):
         s = self
         return f"<Status {s.id} {s.status}>"
 
-     def serialize(self):
+    def serialize(self):
         """Returns a dict representation of a 'Status' instance that can be turned into JSON."""
 
         return {
@@ -114,7 +114,7 @@ class Donation(db.Model):
         d = self
         return f"<Donation {d.id} {d.user_id} {d.first_name} {d.last_name} {d.date} {d.amount} {d.payment_type}>"
 
-     def serialize(self):
+    def serialize(self):
         """Returns a dict representation of a 'Donation' instance that can be turned into JSON."""
 
         return {
@@ -145,14 +145,14 @@ class Class(db.Model):
         return f"<Class {c.id} {c.name} {c.date} {c.staff_id}>"
     
     def serialize(self):
-    """Returns a dict representation of a 'Class' instance that can be turned into JSON."""
+        """Returns a dict representation of a 'Class' instance that can be turned into JSON."""
 
-    return {
-        'id': self.id,
-        'name': self.name,
-        'date': self.date,
-        'staff_id': self.staff_id
-    }
+        return {
+            'id': self.id,
+            'name': self.name,
+            'date': self.date,
+            'staff_id': self.staff_id
+        }
 
 
 
@@ -176,7 +176,7 @@ class Lecture(db.Model):
         l = self
         return f"<Lecture {l.id} {l.class_id} {l.name} {l.link} {l.date} {l.staff_id}>"
 
-     def serialize(self):
+    def serialize(self):
         """Returns a dict representation of a 'Lecture' instance that can be turned into JSON."""
 
         return {
@@ -205,7 +205,7 @@ class Syllabus(db.Model):
         s = self
         return f"<Syllabus {s.id} {s.class_id} {s.name} {s.link}>"
 
-     def serialize(self):
+    def serialize(self):
         """Returns a dict representation of a 'Syllabus' instance that can be turned into JSON."""
 
         return {
@@ -232,7 +232,7 @@ class Document(db.Model):
         d = self
         return f"<Document {d.id} {d.class_id} {d.name} {d.link}>"
 
-     def serialize(self):
+    def serialize(self):
         """Returns a dict representation of a 'Document' instance that can be turned into JSON."""
 
         return {
@@ -260,16 +260,16 @@ class Church(db.Model):
         return f"<Church {c.id} {c.name} {c.location} {c.phone_number} {c.email} {c.website}>"
 
     def serialize(self):
-    """Returns a dict representation of a 'Church' instance that can be turned into JSON."""
+        """Returns a dict representation of a 'Church' instance that can be turned into JSON."""
 
-    return {
-        'id': self.id,
-        'name': self.name,
-        'location': self.location,
-        'phone_number': self.phone_number,
-        'email': self.email,
-        'website': self.website
-    }
+        return {
+            'id': self.id,
+            'name': self.name,
+            'location': self.location,
+            'phone_number': self.phone_number,
+            'email': self.email,
+            'website': self.website
+        }
 
 
 class Graduate(db.Model):
@@ -290,7 +290,7 @@ class Graduate(db.Model):
         g = self
         return f"<Graduate {g.id} {g.first_name} {g.last_name} {g.grad_year} {g.church_id}"
 
-     def serialize(self):
+    def serialize(self):
         """Returns a dict representation of a 'Graduate' instance that can be turned into JSON."""
 
         return {
@@ -321,7 +321,7 @@ class Staff(db.Model):
         s = self
         return f"<Staff {s.id} {s.first_name} {s.last_name} {s.join_date} {s.church_id} {s.role}>"
 
-     def serialize(self):
+    def serialize(self):
         """Returns a dict representation of a 'Staff' instance that can be turned into JSON."""
 
         return {
@@ -360,4 +360,29 @@ class Resource(db.Model):
             'category': self.category,
             'staff_id': self.staff_id,
             'author': self.author
+        }
+
+
+class Contact(db.Model):
+    """Class representing a single contact from the homepage."""
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    first_name = db.Column(db.Text, nullable=False)
+    last_name = db.Column(db.Text, nullable=False)
+    email = db.Column(db.String, nullable=False)
+    message = db.Column(db.Text, nullable=False)
+
+    def __repr__(self):
+        c = self
+        return f"<Contact {c.id} {c.first_name} {c.last_name} {c.email} {c.message}>"
+
+    def serialize(self):
+        """Returns a dict representation of a 'Contact' instance that can be turned into JSON."""
+
+        return {
+            'id': self.id,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'email': self.email,
+            'message': self.message
         }

@@ -1,0 +1,43 @@
+{% extends 'home/base.html' %}
+
+{% block title %}The Expositors Archive - Contact{% endblock %}
+
+{% block content %}
+
+<!-- <div class="container-fluid"></div> -->
+
+    <div class="row m-2 p-5" id="contact">
+        <div class="col-3"></div>
+        <div class="card text-center col-6 bg-secondary">
+            <div class="card-header text-primary">
+              <h2>CONTACT FORM</h2>
+            </div>
+            <div class="card-body">
+                <form id="contact-form" class="text-center" method="POST">
+                  {{ form.hidden_tag() }} <!--add type=hidden form fields -->
+                
+                  {% for field in form if field.widget.input_type != 'hidden' %}
+                
+                    <p class="text-primary">
+                      {{ field.label }}
+                      {{ field }}
+                
+                      {% for error in field.errors %}
+                        {{ error }}
+                      {% endfor %}
+                    </p>
+                
+                  {% endfor %}
+                  
+                  <button class="btn btn-success">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+
+
+
+
+
+{% endblock %}
