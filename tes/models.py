@@ -20,8 +20,8 @@ class User(db.Model):
     __tablename__ = 'user'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    first_name = db.Column(db.String, nullable=False)
-    last_name = db.Column(db.String, nullable=False)
+    first_name = db.Column(db.Text, nullable=False)
+    last_name = db.Column(db.Text, nullable=False)
     password = db.Column(db.String, nullable=False, unique=True)
     phone_number = db.Column(db.String(13), nullable=True, unique=True)
     email = db.Column(db.String, nullable=False, unique=True)
@@ -30,26 +30,31 @@ class User(db.Model):
     status = db.relationship('Status', backref='user')
 
     @classmethod
-    def register(cls, username, pwd):
+    def register(cls, first_name, last_name, pwd, phone_number, email, status_id):
         """Register user w/hashed password & return user."""
 
         hashed = bcrypt.generate_password_hash(pwd)
         # turn bytestring into normal (unicode utf8) string
         hashed_utf8 = hashed.decode("utf8")
 
-        # return instance of user w/username and hashed pwd
-        return cls(username=username, password=hashed_utf8)
+        # return instance of user w/first_name and hashed pwd
+        return cls(first_name=first_name, 
+                    last_name=last_name,
+                    password=hashed_utf8,
+                    phone_number=phone_number,
+                    email=email,
+                    status_id=status_id)
     # end_register
 
     # start_authenticate
     @classmethod
-    def authenticate(cls, username, pwd):
+    def authenticate(cls, email, password):
         """Validate that user exists & password is correct.
 
         Return user if valid; else return False.
         """
 
-        u = User.query.filter_by(username=username).first()
+        u = User.query.filter_by(email=email).first()
 
         if u and bcrypt.check_password_hash(u.password, pwd):
             # return user instance
@@ -134,9 +139,9 @@ class Class(db.Model):
     __tablename__ = 'class'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.String, nullable=False)
-    date = db.Column(db.String(8), nullable=False)
-    staff_id = db.Column(db.Integer, db.ForeignKey('staff.id'), nullable=False)
+    name = db.Column(db.Text, nullable=False)
+    date = db.Column(db.String, nullable=False)
+    staff_id = db.Column(db.Integer, db.ForeignKey('staff.id'), nullable=True)
 
     staff = db.relationship('Staff', backref='class')
 
@@ -166,7 +171,7 @@ class Lecture(db.Model):
     class_id = db.Column(db.Integer, db.ForeignKey('class.id'), nullable=False)
     name = db.Column(db.String, nullable=True)
     link = db.Column(db.String, nullable=False)
-    date = db.Column(db.String(8), nullable=False)
+    date = db.Column(db.String, nullable=False)
     staff_id = db.Column(db.Integer, db.ForeignKey('staff.id'), nullable=False)
 
     course = db.relationship('Class', backref='lecture')
@@ -341,15 +346,15 @@ class Resource(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String, nullable=False)
+    link = db.Column(db.String, nullable=False)
     category = db.Column(db.Text, nullable=False)
     staff_id = db.Column(db.Integer, db.ForeignKey('staff.id'), nullable=True)
-    author = db.Column(db.Text, nullable=True)
 
     staff = db.relationship('Staff', backref='resource')
 
     def __repr__(self):
         r = self
-        return f"<Resource {r.id} {r.title} {r.category} {r.staff_id} {r.author}>"
+        return f"<Resource {r.id} {r.title} {r.category} {r.staff_id}>"
     
     def serialize(self):
         """Returns a dict representation of a 'Resource' instance that can be turned into JSON."""
@@ -357,9 +362,9 @@ class Resource(db.Model):
         return {
             'id': self.id,
             'title': self.title,
+            'link': self.link,
             'category': self.category,
-            'staff_id': self.staff_id,
-            'author': self.author
+            'staff_id': self.staff_id
         }
 
 

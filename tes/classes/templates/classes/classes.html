@@ -1,0 +1,65 @@
+{% extends 'classes/base.html' %}
+
+{% block title %}The Expositors Archive - Class Directory{% endblock %}
+
+{% block content %}
+
+
+
+<nav>
+    <a href="/admin/home"> <!-- Fix this button! --> 
+        <img src="https://expositors.org/wp-content/uploads/2020/02/The-Expositors-SeminaryDIgital.svg" 
+        width="50" height="50" alt="TES Logo">
+      </a>
+    <div id="navbarNav">
+        <ul>
+            <li>
+                <a href="https://expositors.org/">
+                    TES</a>
+            </li>
+            <li>
+                <a href="/donate">Donations</a>
+            </li>
+            <li>
+              <a class="" href="/admin/settings">Settings</a>
+            </li>
+            <!-- add logout functionality here --> 
+            <li>
+              <a href="#">Logout</a>
+            </li> 
+        </ul>
+    </div>
+</nav> 
+  
+<div>
+    <span>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+        {% endif %}
+    {% endwith %}
+    </span>
+</div>
+
+<div>
+    <h1>Class Directory</h1>
+</div>
+
+<div>
+    {% for course in courses %}
+    <div>
+        <h3>
+            <a href="/classes/{{ course.id }}">{{ course.name }}</a>
+            <i>- {{ course.staff.last_name}}</i>
+        </h3>
+        
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+{% endblock %}

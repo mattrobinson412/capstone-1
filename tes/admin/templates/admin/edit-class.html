@@ -1,0 +1,98 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}The Expositors Archive - Edit {{ course.title }}{% endblock %}
+
+{% block content %}
+
+<nav>
+  <a href="/admin/home"> <!-- Fix this button! --> 
+      <img src="https://expositors.org/wp-content/uploads/2020/02/The-Expositors-SeminaryDIgital.svg" 
+      width="50" height="50" alt="TES Logo">
+    </a>
+  <div id="navbarNav">
+      <ul>
+          <li>
+              <a href="https://expositors.org/">
+                  TES</a>
+          </li>
+          <li>
+              <a href="/donate">Donations</a>
+          </li>
+          <li>
+            <a class="" href="/admin/settings">Settings</a>
+          </li>
+          <!-- add logout functionality here --> 
+          <li>
+            <a href="#">Logout</a>
+          </li>
+          
+      </ul>
+  </div>
+</nav> 
+
+<div>
+    <span>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+              {{ message }}
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </span>
+  </div>
+
+<div>
+  <h1>{{ course.name }}</h1>
+</div>
+
+<div class="btn-group">
+    <a href="/admin/add/classes/{{ course.id }}/lecture">Add Lecture</a>
+    <a href="/admin/add/classes/{{ course.id }}/syllabus">Add Syllabus</a>
+    <a href="/admin/add/classes/{{ course.id }}/document">Add Document</a>
+    
+</div>
+
+<div>
+    <h2>{{ course.name }} Lectures</h2>
+  </div>
+<div>
+    {% for lecture in lectures %}
+      <div>
+        <h3>
+          <a href="/admin/edit/classes/{{ course.id }}/lectures/{{ lecture.id }}">{{ lecture.name }}</a>
+        </h3>
+        <p>{{ lecture.date }}</b></p>
+      </div>
+    {% endfor %}
+</div>
+    
+<div>
+    <h2>{{ course.name }} Syllabi</h2>
+  </div>
+<div>
+    {% for syllabus in syllabi %}
+      <div>
+        <h3>
+          <a href="/admin/edit/classes/{{ course.id }}/syllabi/{{ syllabus.id }}">{{ syllabus.name }}</a>
+        </h3>
+      </div>
+    {% endfor %}
+</div>
+
+<div>
+    <h2>{{ course.name }} Documents</h2>
+  </div>
+<div>
+    {% for doc in docs %}
+      <div>
+        <h3>
+          <a href="/admin/edit/classes/{{ course.id }}/documents/{{ doc.id }}">{{ doc.name }}</a>
+        </h3>
+      </div>
+    {% endfor %}
+</div>
+
+<a href="/admin/edit/classes/{{ course.id }}/info">Edit Class Info</a>
+
+{% endblock %}

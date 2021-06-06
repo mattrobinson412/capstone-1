@@ -1,0 +1,72 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}The Expositors Archive - Admin Login{% endblock %}
+
+{% block content %}
+
+<nav class="">
+        <a class="" href="/">
+            <img src="https://expositors.org/wp-content/uploads/2020/02/The-Expositors-SeminaryDIgital.svg" 
+            width="50" height="50" alt="TES Logo">
+          </a>
+        <div class="" id="navbarNav">
+            <ul class="">
+                <li class="">
+                    <a class="" href="https://expositors.org/">
+                        TES</a>
+                </li>
+                <li class="">
+                  <a class="" href="/home/login">Portals</a>
+              </li>
+                <li class="">
+                    <a class="" href="/donate">Donations</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    {% for message in messages %}
+    <div class="" role="">
+      <b>{{ message }}</b>
+    </div>
+    {% endfor %}
+{% endif %}
+{% endwith %}
+
+<div class="" id="admin-login">
+    <div class=""></div>
+    <div class="">
+        <div class="">
+          <h2>ADMIN LOGIN</h2>
+        </div>
+        <div class="">
+            <form id="admin-login-form" class="" method="POST">
+              {{ form.hidden_tag() }} <!--add type=hidden form fields -->
+            
+              {% for field in form if field.widget.input_type != 'hidden' %}
+            
+                <p>
+                  {{ field.label }}
+                  {{ field }}
+            
+                  {% for error in field.errors %}
+                  <span class="">{{ error }}</span>
+                  {% endfor %}
+                </p>
+
+              {% endfor %}
+              
+              <button class="">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div class=""></div>
+</div>
+
+
+
+
+
+{% endblock %}

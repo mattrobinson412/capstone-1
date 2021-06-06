@@ -1,0 +1,54 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}The Expositors Archive - Edit Classes{% endblock %}
+
+{% block content %}
+
+<nav>
+  <a href="/admin/home"> <!-- Fix this button! --> 
+      <img src="https://expositors.org/wp-content/uploads/2020/02/The-Expositors-SeminaryDIgital.svg" 
+      width="50" height="50" alt="TES Logo">
+    </a>
+  <div id="navbarNav">
+      <ul>
+          <li>
+              <a href="https://expositors.org/">
+                  TES</a>
+          </li>
+          <li>
+              <a href="/donate">Donations</a>
+          </li>
+          <li>
+            <a class="" href="/admin/settings">Settings</a>
+          </li>
+          <!-- add logout functionality here --> 
+          <li>
+            <a href="#">Logout</a>
+          </li>
+          
+      </ul>
+  </div>
+</nav> 
+
+<div>
+  <h1>Class List</h1>
+</div>
+
+<div>
+    {% for class in classes %}
+      <div>
+        <h3>{{ class.name }}</h3>
+        <p>{{ class.date }} - <b>{{ class.staff.first_name}} {{ class.staff.last_name }}</b></p>
+        <a href="/admin/edit/classes/{{ class.id }}">Go</a>
+      </div>
+    {% endfor %}
+      
+     
+</div>
+      
+
+
+
+
+
+{% endblock %}

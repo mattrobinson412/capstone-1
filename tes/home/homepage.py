@@ -1,8 +1,6 @@
 from flask import Blueprint, request, render_template, redirect, session, flash, g
 import requests
-import sys
-sys.path.append("C:/Users/12392/Desktop/.vscode/Springboard/Projects/capstones/capstone-1/tes")
-from ..models import *
+import models
 from .forms import ContactForm
 
 home = Blueprint('home', __name__, template_folder='templates', static_folder='static')

@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, FloatField, TextAreaField
 from wtforms.validators import InputRequired, Email, Optional
-from ..models import *
+import models
 
 class ContactForm(FlaskForm):
     """Form for a contact submission on the homepage."""

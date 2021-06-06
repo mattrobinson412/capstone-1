@@ -1,0 +1,75 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}The Expositors Archive - Admin Dashboard{% endblock %}
+
+{% block content %}
+
+<nav class="">
+  <a class=" " href="/admin/home"> <!-- Fix this button! --> 
+      <img src="https://expositors.org/wp-content/uploads/2020/02/The-Expositors-SeminaryDIgital.svg" 
+      width="50" height="50" alt="TES Logo">
+    </a>
+  <div class="" id="navbarNav">
+      <ul class="">
+          <li class="">
+              <a class="" href="https://expositors.org/">
+                  TES</a>
+          </li>
+          <li class="">
+              <a class="" href="/donate">Donations</a>
+          </li>
+          <li class="">
+            <a class="" href="/admin/settings">Settings</a>
+          </li>
+          <!-- add logout functionality here --> 
+          <li class="">
+            <a class="" href="#">Logout</a>
+          </li>
+          
+      </ul>
+  </div>
+</nav> 
+
+<div class="">
+  <h1>Welcome Back, {USER}!<!-- add user info here --></h1>
+</div>
+
+<div class="">
+  
+      <div class="">
+        <h5 class="">Courses</h5>
+        <p class="">Feed on the truth of God's Word through the classes in the Archives.</p>
+        <a href="/classes" class="">Go</a>
+      </div>
+
+      <div class="">
+        <h5 class="">Resources</h5>
+        <p class="">Be spiritually refreshed for ministry through the additional resources in the Archives.</p>
+        <a href="/resources" class="">Go</a>
+      </div>
+      
+      <div class="">
+        <h5 class="">Make Changes</h5>
+        <p class="">Make changes to any of the resources in the Archives, classes included.</p>
+        <a href="/admin/edit" class="">Go</a>
+      </div>
+     
+
+      <div class="">
+        <h5 class="">Add Resources</h5>
+        <p class="">Upload new courses and resources to the Archives.</p>
+        <a href="/admin/add" class="">Go</a>
+      </div>
+      
+      <div class="">
+        <h5 class="">Inquiries</h5>
+        <p class="">Handle any and all messages from students and/or faculty.</p>
+        <a href="/admin/contact" class="">Go</a>
+      </div>
+      
+
+
+
+
+
+{% endblock %}

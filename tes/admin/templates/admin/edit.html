@@ -1,0 +1,58 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}The Expositors Archive - Edit Options{% endblock %}
+
+{% block content %}
+
+<nav class="">
+  <a class=" " href="/admin/home"> <!-- Fix this button! --> 
+      <img src="https://expositors.org/wp-content/uploads/2020/02/The-Expositors-SeminaryDIgital.svg" 
+      width="50" height="50" alt="TES Logo">
+    </a>
+  <div class="" id="navbarNav">
+      <ul class="">
+          <li class="">
+              <a class="" href="https://expositors.org/">
+                  TES</a>
+          </li>
+          <li class="">
+              <a class="" href="/donate">Donations</a>
+          </li>
+          <li class="">
+            <a class="" href="/admin/settings">Settings</a>
+          </li>
+          <!-- add logout functionality here --> 
+          <li class="">
+            <a class="" href="#">Logout</a>
+          </li>
+          
+      </ul>
+  </div>
+</nav> 
+
+<div class="">
+  <h1>Options</h1>
+</div>
+
+<div class="">
+  
+      <div class="">
+        <h5 class="">Classes</h5>
+        <p class="">Any and all courses that have already been conducted in TES.</p>
+        <a href="/admin/edit/classes" class="">Go</a>
+      </div>
+      
+      <div class="">
+        <h5 class="">Resources</h5>
+        <p class="">Any resources for the edification of the saints that were written by TES staff.</p>
+        <a href="/admin/edit/resources" class="">Go</a>
+      </div>
+     
+
+      
+
+
+
+
+
+{% endblock %}

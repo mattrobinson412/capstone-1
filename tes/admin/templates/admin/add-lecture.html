@@ -1,0 +1,65 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}The Expositors Archive - Add Lecture for {{ course.name }}{% endblock %}
+
+{% block content %}
+
+<nav>
+  <a href="/admin/home"> <!-- Fix this button! --> 
+      <img src="https://expositors.org/wp-content/uploads/2020/02/The-Expositors-SeminaryDIgital.svg" 
+      width="50" height="50" alt="TES Logo">
+    </a>
+  <div id="navbarNav">
+      <ul>
+          <li>
+              <a href="https://expositors.org/">
+                  TES</a>
+          </li>
+          <li>
+              <a href="/donate">Donations</a>
+          </li>
+          <li>
+            <a href="/admin/settings">Settings</a>
+          </li>
+          <!-- add logout functionality here --> 
+          <li>
+            <a href="#">Logout</a>
+          </li>
+          
+      </ul>
+  </div>
+</nav> 
+
+<div>
+  <h1>Add Lecture for {{ course.name }}</h1>
+</div>
+<div>
+    <form id="create-lecture-form" method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }} <!--add type=hidden form fields -->
+    
+        {% for field in form if field.widget.input_type != 'hidden' %}
+    
+        <p>
+            {{ field.label }}
+            {{ field }}
+    
+            {% for error in field.errors %}
+            <span>{{ error }}</span>
+            {% endfor %}
+        </p>
+
+        {% endfor %}
+        
+        <button>Submit</button>
+    </form>
+</div>
+      
+     
+
+      
+
+
+
+
+
+{% endblock %}

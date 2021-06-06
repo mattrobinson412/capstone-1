@@ -1,10 +1,8 @@
 """External API calls for TES catalog application."""
 
-from flask import Blueprint, request, jsonify, g
+from flask import Blueprint, request, jsonify
 import requests
-import sys
-sys.path.append("C:/Users/12392/Desktop/.vscode/Springboard/Projects/capstones/capstone-1/tes")
-from ..models import *
+from models import *
 
 api = Blueprint('api', __name__)
 
