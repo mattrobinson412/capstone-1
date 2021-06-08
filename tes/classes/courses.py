@@ -1,10 +1,14 @@
 from flask import Blueprint, request, render_template
+from flask import current_app as app
 import requests
 import sys
 sys.path.append("C:/Users/12392/Desktop/.vscode/Springboard/Projects/capstones/capstone-1/tes")
 from models import *
 
-classes = Blueprint('classes', __name__, template_folder='templates', static_folder='static')
+classes = Blueprint('classes', __name__, 
+                    template_folder='templates',  
+                    # static_url_path='static',  ----- fix in UI stage!!!
+                    static_folder='static')
 
 
 ####### General '/classes/' routes ######################################
@@ -39,21 +43,21 @@ def show_class_lecture(class_id, lecture_id):
     return render_template("/classes/class-lecture.html", course=course, lecture=lecture)
 
 
-@classes.route('/<int:class_id>/syllabi/<int:syllabus_id>')
-def show_class_syllabus(class_id, syllabus_id):
-    """Show authorized user a syllabus for a class."""
+# @classes.route('/<int:class_id>/syllabi/<int:syllabus_id>')
+# def show_class_syllabus(class_id, syllabus_id):
+#     """Show authorized user a syllabus for a class."""
 
-    course = Class.query.get(class_id)
-    syl = Syllabus.query.get(syllabus_id)
+#     course = Class.query.get(class_id)
+#     syl = Syllabus.query.get(syllabus_id)
 
-    return render_template("/classes/class-syllabus.html", course=course, syl=syl)
+#     return render_template("/classes/class-syllabus.html", course=course, syl=syl)
 
 
-@classes.route('/<int:class_id>/documents/<int:doc_id>')
-def show_class_doc(class_id, doc_id):
-    """Show authorized user a document for a class."""
+# @classes.route('/<int:class_id>/documents/<int:doc_id>')
+# def show_class_doc(class_id, doc_id):
+#     """Show authorized user a document for a class."""
 
-    course = Class.query.get(class_id)
-    doc = Document.query.get(doc_id)
+#     course = Class.query.get(class_id)
+#     doc = Document.query.get(doc_id)
 
-    return render_template("/classes/class-doc.html", course=course, doc=doc)
+#     return render_template("/classes/class-doc.html", course=course, doc=doc)

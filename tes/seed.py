@@ -129,7 +129,7 @@ def load_test_data(db):
 
     res = Resource(title="The First Resurrection and Revelation 20",
                     link="https://www.tms.edu/m/TMS-Spring2016-Article-01.pdf",
-                    category="Article",
+                    category="journal",
                     staff_id=1)
 
     db.session.add(res)
@@ -140,6 +140,30 @@ def load_test_data(db):
                     staff_id=1)
 
     db.session.add(greek)
+    db.session.commit()
+
+
+    lecture = Lecture(class_id=1,
+                        name="Intro Lecture",
+                        link="https://vimeo.com/560052457",
+                        date="08/09/21",
+                        staff_id=1)
+
+    db.session.add(lecture)
+    db.session.commit()
+
+    syl = Syllabus(class_id=1,
+                    name="Greek I Syllabus",
+                    link="file:///C:/Users/12392/Downloads/NT503%20Syllabus%20(2).pdf")
+    
+    db.session.add(syl)
+    db.session.commit()
+
+    doc = Document(class_id=1,
+                    name="Basics of Line Diagramming",
+                    link="file:///C:/Users/12392/Downloads/Basics%20of%20Line%20Diagramming%20(Part%201).pdf")
+
+    db.session.add(doc)
     db.session.commit()
 
     contact = Contact(first_name="AJ",

@@ -1,15 +1,16 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, TextAreaField, IntegerField, TextField
 from flask_wtf.file import FileField, FileRequired, FileAllowed
-from wtforms.validators import InputRequired, Length, Optional
+from wtforms.validators import InputRequired, Length, Optional, EqualTo, Email
 
 
 
 class LoginForm(FlaskForm):
     """Form for logging a user in."""
 
-    email = StringField("Email Address", validators=[InputRequired(message="Please enter your email here.")])
-    password = PasswordField("Password", validators=[InputRequired(message="Please enter a valid password.")])
+    email = StringField("Email Address", validators=[InputRequired(message="Please enter your email here."), Email()])
+    password = PasswordField('Password', [InputRequired(), EqualTo('confirm', message='Passwords must match')])
+    confirm  = PasswordField('Repeat Password')
 
 
 class CreateClassForm(FlaskForm):
@@ -86,3 +87,25 @@ class EditDocumentForm(FlaskForm):
     class_id = IntegerField("Class ID", validators=[Optional()])
     name = StringField("Name", validators=[Optional()])
     link = StringField("Link", validators=[Optional()])
+
+
+class EditLectureForm(FlaskForm):
+    """Form for editing a class lecture."""
+
+    class_id = IntegerField("Class ID", validators=[Optional()])
+    name = StringField("Name", validators=[Optional()])
+    link = FileField("Link", validators=[Optional()])
+    date = StringField("Date", validators=[Optional()])
+    staff_id = IntegerField("Staff ID", validators=[Optional()])
+
+
+class EditUserForm(FlaskForm):
+    """Form for editing a user."""
+
+    first_name = TextField("First Name", validators=[Optional()])
+    last_name = TextField("Last Name", validators=[Optional()])
+    phone_number = StringField("Phone Number", validators=[Optional()])
+    email = StringField("Email", validators=[Optional(), Email()])
+    password = PasswordField('Password', [InputRequired(), EqualTo('confirm', message='Passwords must match')])
+    confirm  = PasswordField('Repeat Password')
+    

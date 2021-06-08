@@ -2,6 +2,7 @@
 
 from flask import Flask, render_template, redirect, session, flash, g
 from flask_debugtoolbar import DebugToolbarExtension
+from flask_login import LoginManager, login_required, logout_user, current_user
 from api.apis import api
 from admin.admins import admin
 from alumni.alumnus import alumni
@@ -18,9 +19,12 @@ import os
 
 app = Flask(__name__)
 
+login_manager = LoginManager()
+login_manager.init_app(app)
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///tes_lib'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = "FunInTheSun98"
+app.config['SECRET_KEY'] = keys
 app.config["DEBUG_TB_INTERCEPT_REDIRECTS"] = False
 
 toolbar = DebugToolbarExtension(app)
@@ -37,7 +41,6 @@ def load_seed_file():
 connect_to_database(app)
 load_seed_file()
 
-
 app.register_blueprint(api,url_prefix='/api')
 app.register_blueprint(home,url_prefix='/home')
 app.register_blueprint(admin,url_prefix='/admin')
@@ -53,9 +56,75 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0')
 
 
-# ROUTES ============================================>
-@app.route('/')
-def redirect_home():
-    """Redirects visitors to the homepage."""
+# Flask-Login features ==============================>
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
 
-    return redirect('/home')
+
+@app.route("/logout", methods=["GET", "POST"])
+@login_required
+def handle_user_logout():
+    """Handles the logging out of a user."""
+    
+    user = User.query.get(current_user.id)
+
+    if user.status_id == 1:
+        logout_user()
+        return redirect("/home")
+    if user.status_id == 2:
+        logout_user()
+        return redirect("/home")
+    if user.status_id == 3:
+        logout_user()
+        return redirect("/home")
+    else:
+        return redirect("/home/404")
+
+
+# ROUTES ============================================>
+@app.route('/logo')
+@login_required
+def redirect_home():
+    """Redirects users to their respective dashboards."""
+
+    user = User.query.get(current_user.id)
+
+    if user.status_id == 1:
+        return redirect('/admin/home')
+
+    if user.status_id == 2:
+        return redirect('/alumni/home')
+
+    if user.status_id == 3:
+        return redirect('/student/home')
+
+    else:
+        return redirect('/home/404')
+
+
+@app.route('/settings')
+@login_required
+def redirect_proper_settings():
+    """Redirects users to their respective settings."""
+
+    user = User.query.get(current_user.id)
+
+    if user.status_id == 1:
+        return redirect('/admin/settings')
+
+    if user.status_id == 2:
+        return redirect('alumni/settings')
+
+    if user.status_id == 3:
+        return redirect('student/settings')
+
+    else:
+        return redirect("/home/404")
+
+
+@app.route('/')
+def show_homepage():
+    """Shows homepage for the TES Archives App."""
+
+    return redirect("/home")

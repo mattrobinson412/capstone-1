@@ -1,0 +1,110 @@
+{% extends 'resources/base.html' %}
+
+{% block title %}The Expositors Archive - Resource Directory{% endblock %}
+
+{% block content %}
+
+
+
+<nav>
+    <a href="/"> <!-- Fix this button! --> 
+        <img src="https://expositors.org/wp-content/uploads/2020/02/The-Expositors-SeminaryDIgital.svg" 
+        width="50" height="50" alt="TES Logo">
+      </a>
+    <div id="navbarNav">
+        <ul>
+            <li>
+                <a href="https://expositors.org/">
+                    TES</a>
+            </li>
+            <li>
+                <a href="/donate">Donations</a>
+            </li>
+            <li>
+              <a class="" href="/settings">Settings</a>
+            </li>
+            <!-- add logout functionality here --> 
+            <li>
+              <a href="/logout">Logout</a>
+            </li>
+            
+        </ul>
+    </div>
+  </nav>  
+  
+<div>
+    <span>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+        {% endif %}
+    {% endwith %}
+    </span>
+</div>
+
+<div>
+    <h1>Resource Directory</h1>
+</div>
+
+<div>
+    {% for resource in resources %}
+
+    <h2>Articles</h2>
+    {% if resource.category == 'article' %}
+    <div>
+        <h3>
+            <a href="{{ resource.link }}">{{ resource.title }}</a>
+            - by <i>{{ resource.staff.last_name}}</i>
+        </h3>
+    </div>
+    {% endif %}
+
+    <h2>Booklets</h2>
+    {% if resource.category == 'booklet' %}
+    <div>
+        <h3>
+            <a href="{{ resource.link }}">{{ resource.title }}</a>
+            - by <i>{{ resource.staff.last_name}}</i>
+        </h3>
+    </div>
+    {% endif %}
+
+    <h2>Books</h2>
+    {% if resource.category == 'book' %}
+    <div>
+        <h3>
+            <a href="{{ resource.link }}">{{ resource.title }}</a>
+            - by <i>{{ resource.staff.last_name}}</i>
+        </h3>
+    </div>
+    {% endif %}
+
+    <h2>Journals</h2>
+    {% if resource.category == 'journal' %}
+    <div>
+        <h3>
+            <a href="{{ resource.link }}">{{ resource.title }}</a>
+            - by <i>{{ resource.staff.last_name}}</i>
+        </h3>
+    </div>
+    {% endif %}
+
+    <h2>Conferences</h2>
+    {% if resource.category == 'conference' %}
+    <div>
+        <h3>
+            <a href="{{ resource.link }}">{{ resource.title }}</a>
+            - by <i>{{ resource.staff.last_name}}</i>
+        </h3>
+    </div>
+    {% endif %}
+
+    {% endfor %}
+</div>
+
+
+
+
+{% endblock %}

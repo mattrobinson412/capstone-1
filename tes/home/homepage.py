@@ -29,11 +29,9 @@ def handle_contact_form():
         db.session.add(c)
         db.session.commit()
 
-        flash(f"Thanks {first_name}, your message has been sent! We will be in touch as soon as we can.")
         return redirect("/")
     
     else:
-        flash("Sorry! Something went wrong with your entry. Please try again.")
         return render_template("home/contact.html", form=form)
 
 
@@ -43,3 +41,9 @@ def show_login_cards():
 
     return render_template("home/login.html")
 
+
+@home.route("/404")
+def get_404():
+    """Shows 404 page for unauthorized users."""
+
+    return render_template("home/404.html")

@@ -1,0 +1,33 @@
+{% extends 'home/base.html' %}
+
+{% block title %}The Expositors Archive - 404{% endblock %}
+
+{% block content %}
+
+<!-- <div class="container-fluid"></div> -->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    {% for message in messages %}
+    <div class="" role="alert">
+      <b>{{ message }}</b>
+    </div>
+    {% endfor %}
+{% endif %}
+{% endwith %}
+
+    <div class="" id="contact">
+        <h1>Sorry!</h1>
+        <p>It seems that we've reached an impasse - 
+            this page requires authorization that at the moment, you don't have!
+            Let's fix this issue by either logging you in or getting you in contact with the Admin team. Choose your adventure below.</p>
+    </div>
+
+    <div>
+        <a href="/home/login">Login Portals</a>
+        <a href="/home/contact">Contact Form</a>
+    </div>
+
+
+
+
+{% endblock %}

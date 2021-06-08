@@ -7,7 +7,7 @@
 
 
 <nav>
-    <a href="/admin/home"> <!-- Fix this button! --> 
+    <a href="/"> <!-- Fix this button! --> 
         <img src="https://expositors.org/wp-content/uploads/2020/02/The-Expositors-SeminaryDIgital.svg" 
         width="50" height="50" alt="TES Logo">
       </a>
@@ -21,15 +21,16 @@
                 <a href="/donate">Donations</a>
             </li>
             <li>
-              <a class="" href="/admin/settings">Settings</a>
+              <a class="" href="/settings">Settings</a>
             </li>
             <!-- add logout functionality here --> 
             <li>
-              <a href="#">Logout</a>
-            </li> 
+              <a href="/logout">Logout</a>
+            </li>
+            
         </ul>
     </div>
-</nav> 
+  </nav>  
   
 <div>
     <span>
@@ -44,6 +45,11 @@
 </div>
 
 <div>
-    <h1>{{ lecture.name }} from {{ course.name }}</h1>
+    <h1>{{ lecture.name }} - <i>{{ course.name }}</i></h1>
 </div>
 
+<div data-vimeo-url="{{ lecture.link }}" data-vimeo-width="800" data-vimeo-height="600" id="lecture"></div>
+<script src="https://player.vimeo.com/api/player.js"></script>
+<script src="{{ url_for('classes.static', filename='class.js') }}"></script>
+
+{% endblock %}

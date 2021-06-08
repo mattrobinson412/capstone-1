@@ -1,0 +1,62 @@
+{% extends 'student/base.html' %}
+
+{% block title %}The Expositors Archive - Student Dashboard{% endblock %}
+
+{% block content %}
+
+<nav>
+  <a href="/logo"> <!-- Fix this button! --> 
+      <img src="https://expositors.org/wp-content/uploads/2020/02/The-Expositors-SeminaryDIgital.svg" 
+      width="50" height="50" alt="TES Logo">
+    </a>
+  <div id="navbarNav">
+      <ul>
+          <li>
+              <a href="https://expositors.org/">
+                  TES</a>
+          </li>
+          <li>
+              <a href="/donate">Donations</a>
+          </li>
+          <li>
+            <a class="" href="/settings">Settings</a>
+          </li>
+          <!-- add logout functionality here --> 
+          <li>
+            <a href="/logout">Logout</a>
+          </li>
+          
+      </ul>
+  </div>
+</nav> 
+
+<div class="">
+  <h1>Welcome Back, {{ user.first_name }}!<!-- add user info here --></h1>
+</div>
+
+<div class="">
+  
+      <div class="">
+        <h5 class="">Courses</h5>
+        <p class="">Feed on the truth of God's Word through the classes in the Archives.</p>
+        <a href="/classes" class="">Go</a>
+      </div>
+
+      <div class="">
+        <h5 class="">Resources</h5>
+        <p class="">Be spiritually refreshed for ministry through the additional resources in the Archives.</p>
+        <a href="/resources" class="">Go</a>
+      </div>
+      
+      <div class="">
+        <h5 class="">Requests</h5>
+        <p class="">Send any suggestions or questions that you have over to the TES faculty.</p>
+        <a href="/student/contact" class="">Go</a>
+      </div>
+      
+
+
+
+
+
+{% endblock %}
