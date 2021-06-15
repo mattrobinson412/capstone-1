@@ -4,34 +4,6 @@
 
 {% block content %}
 
-
-
-<nav>
-    <a href="/"> <!-- Fix this button! --> 
-        <img src="https://expositors.org/wp-content/uploads/2020/02/The-Expositors-SeminaryDIgital.svg" 
-        width="50" height="50" alt="TES Logo">
-      </a>
-    <div id="navbarNav">
-        <ul>
-            <li>
-                <a href="https://expositors.org/">
-                    TES</a>
-            </li>
-            <li>
-                <a href="/donate">Donations</a>
-            </li>
-            <li>
-              <a class="" href="/settings">Settings</a>
-            </li>
-            <!-- add logout functionality here --> 
-            <li>
-              <a href="/logout">Logout</a>
-            </li>
-            
-        </ul>
-    </div>
-  </nav>  
-  
 <div>
     <span>
     {% with messages = get_flashed_messages() %}
@@ -44,67 +16,88 @@
     </span>
 </div>
 
-<div>
+<header class="head">
     <h1>Resource Directory</h1>
-</div>
+</header>
 
-<div>
+<div class="body">
     {% for resource in resources %}
+    <section>
+        <h1>Articles</h1>
+        {% if resource.category == 'Article' %}
+        <article class="border">
+            <h2>
+                <a class="submit-btn" href="{{ resource.link }}">{{ resource.title }}</a>
+            </h2>
+            <h4 class="login-portal">by <i>{{ resource.staff.last_name}}</i></h4>
+        </article>
+        {% endif %}
+    </section>
 
-    <h2>Articles</h2>
-    {% if resource.category == 'article' %}
-    <div>
-        <h3>
-            <a href="{{ resource.link }}">{{ resource.title }}</a>
-            - by <i>{{ resource.staff.last_name}}</i>
-        </h3>
-    </div>
-    {% endif %}
+    <section>
+        <h1>Booklets</h1>
+        {% if resource.category == 'Booklet' %}
+        <article class="border">
+            <h2>
+                <a class="submit-btn" href="{{ resource.link }}">{{ resource.title }}</a>
+            </h2>
+            <h4 class="login-portal">by <i>{{ resource.staff.last_name}}</i></h4>
+        </article>
+        {% endif %}
+    </section>
+    
+    <section>
+        <h1>Books</h1>
+        {% if resource.category == 'Book' %}
+        <article class="border">
+            <h2>
+                <a class="submit-btn" href="{{ resource.link }}">{{ resource.title }}</a>
+            </h2>
+            <h4 class="login-portal">by <i>{{ resource.staff.last_name}}</i></h4>
+        </article>
+        {% endif %}
+    </section>
 
-    <h2>Booklets</h2>
-    {% if resource.category == 'booklet' %}
-    <div>
-        <h3>
-            <a href="{{ resource.link }}">{{ resource.title }}</a>
-            - by <i>{{ resource.staff.last_name}}</i>
-        </h3>
-    </div>
-    {% endif %}
+    <section>
+        <h1>Journals</h1>
+        {% if resource.category == 'Journal' %}
+        <article class="border">
+            <h2>
+                <a class="submit-btn" href="{{ resource.link }}">{{ resource.title }}</a>
+            </h2>
+            <h4 class="login-portal">by <i>{{ resource.staff.last_name}}</i></h4>
+        </article>
+        {% endif %}
+    </section>
 
-    <h2>Books</h2>
-    {% if resource.category == 'book' %}
-    <div>
-        <h3>
-            <a href="{{ resource.link }}">{{ resource.title }}</a>
-            - by <i>{{ resource.staff.last_name}}</i>
-        </h3>
-    </div>
-    {% endif %}
-
-    <h2>Journals</h2>
-    {% if resource.category == 'journal' %}
-    <div>
-        <h3>
-            <a href="{{ resource.link }}">{{ resource.title }}</a>
-            - by <i>{{ resource.staff.last_name}}</i>
-        </h3>
-    </div>
-    {% endif %}
-
-    <h2>Conferences</h2>
-    {% if resource.category == 'conference' %}
-    <div>
-        <h3>
-            <a href="{{ resource.link }}">{{ resource.title }}</a>
-            - by <i>{{ resource.staff.last_name}}</i>
-        </h3>
-    </div>
-    {% endif %}
-
+    <section>
+        <h1>Conferences</h1>
+        {% if resource.category == 'Conference' %}
+        <article class="border">
+            <h2>
+                <a class="submit-btn" href="{{ resource.link }}">{{ resource.title }}</a>
+            </h2>
+            <h4 class="login-portal">by <i>{{ resource.staff.last_name}}</i></h4>
+        </article>
+        {% endif %}
+    </section>
     {% endfor %}
 </div>
-
-
-
-
+    
+<div class="legs form-info">
+    <section>
+      <article>
+        <p>
+          <i>
+            “Preach the Word; be ready in season and out of season; 
+            reprove, rebuke, exhort, with great patience and instruction.”
+          </i>
+        </p>
+      </article>
+      <article>
+        <p><b>~ 2 Timothy 4:2</b></p>
+      </article>
+    </section>
+  </div>
+    
 {% endblock %}

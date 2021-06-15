@@ -4,95 +4,64 @@
 
 {% block content %}
 
-<nav>
-  <a href="/logo"> <!-- Fix this button! --> 
-      <img src="https://expositors.org/wp-content/uploads/2020/02/The-Expositors-SeminaryDIgital.svg" 
-      width="50" height="50" alt="TES Logo">
-    </a>
-  <div id="navbarNav">
-      <ul>
-          <li>
-              <a href="https://expositors.org/">
-                  TES</a>
-          </li>
-          <li>
-              <a href="/donate">Donations</a>
-          </li>
-          <li>
-            <a class="" href="/settings">Settings</a>
-          </li>
-          <!-- add logout functionality here --> 
-          <li>
-            <a href="/logout">Logout</a>
-          </li>
-          
-      </ul>
-  </div>
-</nav> 
-
-<div>
-    <span>
-      {% with messages = get_flashed_messages() %}
-        {% if messages %}
-          {% for message in messages %}
-              {{ message }}
-          {% endfor %}
-        {% endif %}
-      {% endwith %}
-    </span>
-  </div>
-
-<div>
+<header class="head flex-container">
   <h1>{{ course.name }}</h1>
-</div>
+</header>
 
-<div class="btn-group">
-    <a href="/admin/add/classes/{{ course.id }}/lecture">Add Lecture</a>
-    <a href="/admin/add/classes/{{ course.id }}/syllabus">Add Syllabus</a>
-    <a href="/admin/add/classes/{{ course.id }}/document">Add Document</a>
-    
-</div>
+<div class="body">
+  <section>
+    <a class="submit-btn" href="/admin/add/classes/{{ course.id }}/lecture">Add Lecture</a>
+    <a class="submit-btn" href="/admin/add/classes/{{ course.id }}/syllabus">Add Syllabus</a>
+    <a class="submit-btn" href="/admin/add/classes/{{ course.id }}/document">Add Document</a>
+    <a class="submit-btn" href="/admin/edit/classes/{{ course.id }}/info">Edit Class Info</a>
+  </section>
 
-<div>
-    <h2>{{ course.name }} Lectures</h2>
-  </div>
-<div>
-    {% for lecture in lectures %}
-      <div>
-        <h3>
+  <section id="class-features">
+    <h1 style="text-align: center;">Class Info</h1>
+    <article class="border">
+      <h1 class="logo-heading">{{ course.name }} Lectures</h1>
+      {% for lecture in lectures %}
+        <h4 class="login-portal">
           <a href="/admin/edit/classes/{{ course.id }}/lectures/{{ lecture.id }}">{{ lecture.name }}</a>
-        </h3>
-        <p>{{ lecture.date }}</b></p>
-      </div>
-    {% endfor %}
-</div>
-    
-<div>
-    <h2>{{ course.name }} Syllabi</h2>
-  </div>
-<div>
-    {% for syllabus in syllabi %}
-      <div>
-        <h3>
+        </h4>
+        <p class="login-portal">{{ lecture.date }}</b></p>
+      {% endfor %}
+    </article>
+
+    <article class="border">
+      <h1 class="logo-heading">{{ course.name }} Syllabi</h1>
+      {% for syllabus in syllabi %}
+        <h4 class="login-portal">
           <a href="/admin/edit/classes/{{ course.id }}/syllabi/{{ syllabus.id }}">{{ syllabus.name }}</a>
-        </h3>
-      </div>
-    {% endfor %}
-</div>
+        </h4>
+      {% endfor %}
+    </article>
 
-<div>
-    <h2>{{ course.name }} Documents</h2>
-  </div>
-<div>
-    {% for doc in docs %}
-      <div>
-        <h3>
+    <article class="border">
+      <h1 class="logo-heading">{{ course.name }} Documents</h1>
+      {% for doc in docs %}
+        <h4 class="login-portal">
           <a href="/admin/edit/classes/{{ course.id }}/documents/{{ doc.id }}">{{ doc.name }}</a>
-        </h3>
-      </div>
-    {% endfor %}
+        </h4>
+      {% endfor %}
+    </article>
+  </section>
 </div>
 
-<a href="/admin/edit/classes/{{ course.id }}/info">Edit Class Info</a>
+<div class="legs form-info">
+  <section>
+    <article>
+      <p>
+        <i>
+          “Preach the Word; be ready in season and out of season; 
+          reprove, rebuke, exhort, with great patience and instruction.”
+        </i>
+      </p>
+    </article>
+    <article>
+      <p><b>~ 2 Timothy 4:2</b></p>
+    </article>
+  </section>
+</div>
 
 {% endblock %}

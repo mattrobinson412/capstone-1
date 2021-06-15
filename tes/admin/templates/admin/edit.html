@@ -4,55 +4,43 @@
 
 {% block content %}
 
-<nav>
-  <a href="/logo"> <!-- Fix this button! --> 
-      <img src="https://expositors.org/wp-content/uploads/2020/02/The-Expositors-SeminaryDIgital.svg" 
-      width="50" height="50" alt="TES Logo">
-    </a>
-  <div id="navbarNav">
-      <ul>
-          <li>
-              <a href="https://expositors.org/">
-                  TES</a>
-          </li>
-          <li>
-              <a href="/donate">Donations</a>
-          </li>
-          <li>
-            <a class="" href="/settings">Settings</a>
-          </li>
-          <!-- add logout functionality here --> 
-          <li>
-            <a href="/logout">Logout</a>
-          </li>
-          
-      </ul>
-  </div>
-</nav> 
-
-<div class="">
+<header class="head flex-container">
   <h1>Options</h1>
+</header>
+
+<div class="body">
+  <section>
+    <article class="border">
+      <h1 class="logo-heading"><i class="fas fa-school"></i></h1>
+      <h4 class="login-portal">Classes</h4>
+      <p class="login-portal">Any and all courses that have already been conducted in TES.</p>
+      <a href="/admin/edit/classes" class="submit-btn">Go</a>
+    </article>
+    
+    <article class="border">
+      <h1 class="logo-heading"><i class="fas fa-book-reader"></i></h1>
+      <h4 class="login-portal">Resources</h4>
+      <p class="login-portal">Any resources for the edification of the saints that were written 
+        by TES staff.</p>
+      <a href="/admin/edit/resources" class="submit-btn">Go</a>
+    </article>
+  </section>
 </div>
-
-<div class="">
-  
-      <div class="">
-        <h5 class="">Classes</h5>
-        <p class="">Any and all courses that have already been conducted in TES.</p>
-        <a href="/admin/edit/classes" class="">Go</a>
-      </div>
-      
-      <div class="">
-        <h5 class="">Resources</h5>
-        <p class="">Any resources for the edification of the saints that were written by TES staff.</p>
-        <a href="/admin/edit/resources" class="">Go</a>
-      </div>
      
-
+<div class="legs form-info">
+  <section>
+    <article>
+      <p>
+        <i>
+          “Preach the Word; be ready in season and out of season; 
+          reprove, rebuke, exhort, with great patience and instruction.”
+        </i>
+      </p>
+    </article>
+    <article>
+      <p><b>~ 2 Timothy 4:2</b></p>
+    </article>
+  </section>
+</div>
       
-
-
-
-
-
 {% endblock %}

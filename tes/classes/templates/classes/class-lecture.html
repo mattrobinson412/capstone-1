@@ -4,34 +4,6 @@
 
 {% block content %}
 
-
-
-<nav>
-    <a href="/"> <!-- Fix this button! --> 
-        <img src="https://expositors.org/wp-content/uploads/2020/02/The-Expositors-SeminaryDIgital.svg" 
-        width="50" height="50" alt="TES Logo">
-      </a>
-    <div id="navbarNav">
-        <ul>
-            <li>
-                <a href="https://expositors.org/">
-                    TES</a>
-            </li>
-            <li>
-                <a href="/donate">Donations</a>
-            </li>
-            <li>
-              <a class="" href="/settings">Settings</a>
-            </li>
-            <!-- add logout functionality here --> 
-            <li>
-              <a href="/logout">Logout</a>
-            </li>
-            
-        </ul>
-    </div>
-  </nav>  
-  
 <div>
     <span>
     {% with messages = get_flashed_messages() %}
@@ -44,11 +16,32 @@
     </span>
 </div>
 
-<div>
+<header class="head">
     <h1>{{ lecture.name }} - <i>{{ course.name }}</i></h1>
+</header>
+
+<div class="body">
+    <section>
+        <div data-vimeo-url="{{ lecture.link }}" data-vimeo-width="800" data-vimeo-height="600" id="lecture"></div>
+    </section>
 </div>
 
-<div data-vimeo-url="{{ lecture.link }}" data-vimeo-width="800" data-vimeo-height="600" id="lecture"></div>
+<div class="legs form-info">
+    <section>
+      <article>
+        <p>
+          <i>
+            “Preach the Word; be ready in season and out of season; 
+            reprove, rebuke, exhort, with great patience and instruction.”
+          </i>
+        </p>
+      </article>
+      <article>
+        <p><b>~ 2 Timothy 4:2</b></p>
+      </article>
+    </section>
+  </div>
+
 <script src="https://player.vimeo.com/api/player.js"></script>
 <script src="{{ url_for('classes.static', filename='class.js') }}"></script>
 

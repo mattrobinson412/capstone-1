@@ -68,7 +68,7 @@ class AddLectureForm(FlaskForm):
 
     class_id = IntegerField("Class ID", validators=[InputRequired(message="Please enter the ID of the class this lecture belongs to.")])
     name = StringField("Name", validators=[InputRequired(message="Please enter the name of the lecture here.")])
-    link = FileField("Link", validators=[FileRequired()])
+    link = StringField("Link", validators=[InputRequired(message="Please enter a link to the lecture here.")])
     date = StringField("Date", validators=[InputRequired(message="Please enter the date of the lecture here.")])
     staff_id = IntegerField("Staff ID", validators=[InputRequired(message="Please enter the ID of the staff member who taugh this lecture.")])
 
@@ -94,7 +94,7 @@ class EditLectureForm(FlaskForm):
 
     class_id = IntegerField("Class ID", validators=[Optional()])
     name = StringField("Name", validators=[Optional()])
-    link = FileField("Link", validators=[Optional()])
+    link = StringField("Link", validators=[Optional()])
     date = StringField("Date", validators=[Optional()])
     staff_id = IntegerField("Staff ID", validators=[Optional()])
 

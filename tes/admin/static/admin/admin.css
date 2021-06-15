@@ -134,7 +134,6 @@ header {
 
 /* .body CSS ------------ */
 .body {
-  text-align: center;
   grid-row: 3;
   grid-column: 2;
   justify-self: center;
@@ -162,6 +161,7 @@ p.login-portal {
 
 
 article.border {
+  
   border-color:#FFDDAD;
   text-align: center;
   padding: 5%;

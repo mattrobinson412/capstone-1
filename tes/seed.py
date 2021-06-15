@@ -129,7 +129,7 @@ def load_test_data(db):
 
     res = Resource(title="The First Resurrection and Revelation 20",
                     link="https://www.tms.edu/m/TMS-Spring2016-Article-01.pdf",
-                    category="journal",
+                    category="Journal",
                     staff_id=1)
 
     db.session.add(res)

@@ -14,7 +14,6 @@ from resources.resource import resources
 from student.students import student
 from models import *
 from secret import *
-# import seed
 import os
 
 app = Flask(__name__)

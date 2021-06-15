@@ -33,8 +33,7 @@
             4. password,
             5. Phone_number,
             6. Email,
-            7. Status_id (fk referencing ‘Status’ column ‘status’),
-            8. Donor_id (nullable = True).
+            7. Status_id (fk referencing ‘Status’ column ‘status’).
         2. A ‘Status’ table (i.e. student, alumni, etc.),
             1. Status_id,
             2. Status.
@@ -79,7 +78,7 @@
         10. A ‘Resources’ table,
     2. The back-end portion will cover 3 components:
         1. A RESTful API,
-            1. **GET**:
+            1. **GET/POST/PATCH/DELETE**:
                 1. Classes,
                     1. Lectures,
                     2. Syllabi,
@@ -102,98 +101,6 @@
                         1. Chapel sermons,
                         2. Blog posts,
                         3. TES updates (?).
-            2. **POST**:
-                1. Classes,
-                    1. Lectures,
-                    2. Syllabi,
-                    3. Documents.
-                2. Churches,
-                    1. Campus churches,
-                        1. Location,
-                        2. Contact info,
-                            1. Phone Number,
-                            2. Email,
-                            3. Website.
-                    2. Graduate churches,
-                        1. Location,
-                        2. Contact info,
-                            1. Phone Number,
-                            2. Email,
-                            3. Website.
-                        3. Role of graduate.
-                3. Resources,
-                    1. Chapel sermons,
-                    2. Blog posts,
-                    3. TES updates (?).
-            3. **PUT**:
-                1. Classes,
-                    1. Lectures,
-                    2. Syllabi,
-                    3. Documents.
-                2. Churches,
-                    1. Campus churches,
-                        1. Location,
-                        2. Contact info,
-                            1. Phone Number,
-                            2. Email,
-                            3. Website.
-                    2. Graduate churches,
-                        1. Location,
-                        2. Contact info,
-                            1. Phone Number,
-                            2. Email,
-                            3. Website.
-                        3. Role of graduate.
-                3. Resources,
-                    1. Chapel sermons,
-                    2. Blog posts,
-                    3. TES updates (?).
-            4. **PATCH**:
-                1. Classes,
-                    1. Lectures,
-                    2. Syllabi,
-                    3. Documents.
-                2. Churches,
-                    1. Campus churches,
-                        1. Location,
-                        2. Contact info,
-                            1. Phone Number,
-                            2. Email,
-                            3. Website.
-                    2. Graduate churches,
-                        1. Location,
-                        2. Contact info,
-                            1. Phone Number,
-                            2. Email,
-                            3. Website.
-                        3. Role of graduate.
-                3. Resources,
-                    1. Chapel sermons,
-                    2. Blog posts,
-                    3. TES updates (?).
-            5. **DELETE**:
-                1. Classes,
-                    1. Lectures,
-                    2. Syllabi,
-                    3. Documents.
-                2. Churches,
-                    1. Campus churches,
-                        1. Location,
-                        2. Contact info,
-                            1. Phone Number,
-                            2. Email,
-                            3. Website.
-                    2. Graduate churches,
-                        1. Location,
-                        2. Contact info,
-                            1. Phone Number,
-                            2. Email,
-                            3. Website.
-                        3. Role of graduate.
-                3. Resources,
-                    1. Chapel sermons,
-                    2. Blog posts,
-                    3. TES updates (?).
         2. Flask Blueprint routing,
             1. “/”,
                 1. Initial home page for site.

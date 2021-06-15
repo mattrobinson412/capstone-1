@@ -4,32 +4,6 @@
 
 {% block content %}
 
-<nav>
-  <a href="/logo"> <!-- Fix this button! --> 
-      <img src="https://expositors.org/wp-content/uploads/2020/02/The-Expositors-SeminaryDIgital.svg" 
-      width="50" height="50" alt="TES Logo">
-    </a>
-  <div id="navbarNav">
-      <ul>
-          <li>
-              <a href="https://expositors.org/">
-                  TES</a>
-          </li>
-          <li>
-              <a href="/donate">Donations</a>
-          </li>
-          <li>
-            <a class="" href="/settings">Settings</a>
-          </li>
-          <!-- add logout functionality here --> 
-          <li>
-            <a href="/logout">Logout</a>
-          </li>
-          
-      </ul>
-  </div>
-</nav> 
-  
   <div>
     <span>
       {% with messages = get_flashed_messages() %}
@@ -43,10 +17,11 @@
   </div>
   
 
-<div>
-    <h2>Add Syllabus for {{ course.name }}</h2>
-</div>
-<div>
+<header class="head">
+    <h1>Add Syllabus for {{ course.name }}</h1>
+</header>
+
+<div class="body">
     <form id="create-syllabus-form" method="POST">
         {{ form.hidden_tag() }} <!--add type=hidden form fields -->
     
@@ -63,7 +38,9 @@
 
         {% endfor %}
         
-        <button>Submit</button>
+        <button class="submit-btn">
+          <span class="button-text">Submit</span>
+        </button>
     </form>
 </div>
     

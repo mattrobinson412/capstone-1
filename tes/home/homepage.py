@@ -1,6 +1,6 @@
 from flask import Blueprint, request, render_template, redirect, session, flash, g
 import requests
-import models
+from models import *
 from .forms import ContactForm
 
 home = Blueprint('home', __name__, template_folder='templates', static_folder='static')

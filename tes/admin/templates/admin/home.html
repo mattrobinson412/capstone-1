@@ -4,71 +4,66 @@
 
 {% block content %}
 
-<nav>
-  <a href="/logo"> <!-- Fix this button! --> 
-      <img src="https://expositors.org/wp-content/uploads/2020/02/The-Expositors-SeminaryDIgital.svg" 
-      width="50" height="50" alt="TES Logo">
-    </a>
-  <div id="navbarNav">
-      <ul>
-          <li>
-              <a href="https://expositors.org/">
-                  TES</a>
-          </li>
-          <li>
-              <a href="/donate">Donations</a>
-          </li>
-          <li>
-            <a class="" href="/settings">Settings</a>
-          </li>
-          <!-- add logout functionality here --> 
-          <li>
-            <a href="/logout">Logout</a>
-          </li>
-          
-      </ul>
-  </div>
-</nav> 
+<header class="head">
+  <h1>
+    Welcome Back, <b style="color:white;">{{ user.first_name }}!</b>
+  </h1>
+</header>
 
-<div class="">
-  <h1>Welcome Back, {{ user.first_name }}!<!-- add user info here --></h1>
+<div class="body">
+    <section>
+      <article class="border">
+        <h1 class="logo-heading"><i class="fas fa-school"></i></h1>
+        <h4 class="login-portal">Courses</h4>
+        <p class="login-portal">Feed on the truth of God's Word through the classes in the Archives.</p>
+        <a href="/classes" class="submit-btn" style="width: auto;">Go</a>
+      </article>
+
+      <article class="border">
+        <h1 class="logo-heading"><i class="fas fa-book-reader"></i></h1>
+        <h4 class="login-portal">Resources</h4>
+        <p class="login-portal">Be spiritually refreshed for ministry through the additional resources in the Archives.</p>
+        <a href="/resources" class="submit-btn" style="width: auto;">Go</a>
+      </article>
+
+      <article class="border">
+        <h1 class="logo-heading"><i class="fas fa-cogs"></i></h1>
+        <h4 class="login-portal">Make Changes</h4>
+        <p class="login-portal">Make changes to any of the resources in the Archives, classes included.</p>
+        <a href="/admin/edit" class="submit-btn" style="width: auto;">Go</a>
+      </article>
+
+      <article class="border">
+        <h1 class="logo-heading"><i class="fas fa-clipboard-check"></i></h1>
+        <h4 class="login-portal">Add Resources</h4>
+        <p class="login-portal">Upload new courses and resources to the Archives.</p>
+        <a href="/admin/add" class="submit-btn" style="width: auto;">Go</a>
+      </article>
+
+      <article class="border">
+        <h1 class="logo-heading"><i class="fas fa-envelope-open-text"></i></h1>
+        <h4 class="login-portal">Inquiries</h4>
+        <p class="login-portal">Handle any and all messages from students and/or faculty.</p>
+        <a href="/admin/contact" class="submit-btn" style="width: auto;">Go</a>
+      </article>
+    </section>
 </div>
 
-<div class="">
-  
-      <div class="">
-        <h5 class="">Courses</h5>
-        <p class="">Feed on the truth of God's Word through the classes in the Archives.</p>
-        <a href="/classes" class="">Go</a>
-      </div>
-
-      <div class="">
-        <h5 class="">Resources</h5>
-        <p class="">Be spiritually refreshed for ministry through the additional resources in the Archives.</p>
-        <a href="/resources" class="">Go</a>
-      </div>
-      
-      <div class="">
-        <h5 class="">Make Changes</h5>
-        <p class="">Make changes to any of the resources in the Archives, classes included.</p>
-        <a href="/admin/edit" class="">Go</a>
-      </div>
-     
-
-      <div class="">
-        <h5 class="">Add Resources</h5>
-        <p class="">Upload new courses and resources to the Archives.</p>
-        <a href="/admin/add" class="">Go</a>
-      </div>
-      
-      <div class="">
-        <h5 class="">Inquiries</h5>
-        <p class="">Handle any and all messages from students and/or faculty.</p>
-        <a href="/admin/contact" class="">Go</a>
-      </div>
-      
-
-
+<div class="legs form-info">
+  <section>
+    <article>
+      <p>
+        <i>
+          “Preach the Word; be ready in season and out of season; 
+          reprove, rebuke, exhort, with great patience and instruction.”
+        </i>
+      </p>
+    </article>
+    <article>
+      <p><b>~ 2 Timothy 4:2</b></p>
+    </article>
+  </section>
+</div>
 
 
 

@@ -4,34 +4,6 @@
 
 {% block content %}
 
-
-
-<nav>
-    <a href="/"> <!-- Fix this button! --> 
-        <img src="https://expositors.org/wp-content/uploads/2020/02/The-Expositors-SeminaryDIgital.svg" 
-        width="50" height="50" alt="TES Logo">
-      </a>
-    <div id="navbarNav">
-        <ul>
-            <li>
-                <a href="https://expositors.org/">
-                    TES</a>
-            </li>
-            <li>
-                <a href="/donate">Donations</a>
-            </li>
-            <li>
-              <a class="" href="/settings">Settings</a>
-            </li>
-            <!-- add logout functionality here --> 
-            <li>
-              <a href="/logout">Logout</a>
-            </li>
-            
-        </ul>
-    </div>
-  </nav> 
-  
 <div>
     <span>
     {% with messages = get_flashed_messages() %}
@@ -44,44 +16,59 @@
     </span>
 </div>
 
-<div>
+<header class="head flex-container">
     <h1>{{ course.name }} Directory</h1>
+</header>
+
+<div class="body">
+    <section>
+        <h1>Class Lectures</h1>
+        {% for lecture in lectures %}
+        <article class="border">
+            <h1 class="logo-heading">{{ lecture.name }}</h1>
+            <h4 class="login-portal"><i>{{ lecture.staff.last_name}}</i></h4>
+            <a class="submit-btn" href="/classes/{{ course.id }}/lectures/{{ lecture.id }}">Go</a>
+        </article>
+        {% endfor %}
+    </section>
+    
+    <section>
+        <h1>Class Syllabi</h1>
+        {% for syllabus in syllabi %}
+        <article class="border">
+            <h1 class="logo-heading">{{ syllabus.name }}</h1>
+            <h4 class="login-portal"><i>{{ syllabus.course.staff.last_name}}</i></h4>
+            <a class="submit-btn" href="{{ syllabus.link }}">Go</a>
+        </article>
+        {% endfor %}
+    </section>
+    
+    <section>
+        <h1>Class Documents</h1>
+        {% for doc in docs %}
+        <article class="border">
+            <h1 class="logo-heading">{{ doc.name }}</h1>
+            <h4 class="login-portal"><i>{{ doc.course.staff.last_name}}</i></h4>
+            <a class="submit-btn" href="{{ doc.link }}">Go</a>
+        </article>
+        {% endfor %}
+    </section>
 </div>
 
-<div>
-    <h2>Class Lectures</h2>
-    {% for lecture in lectures %}
-    <div>
-        <h3>
-            <a href="/classes/{{ course.id }}/lectures/{{ lecture.id }}">{{ lecture.name }}</a>
-            <i>- {{ lecture.staff.last_name}}</i>
-        </h3>
-    </div>
-    {% endfor %}
-</div>
-
-<div>
-    <h2>Class Syllabi</h2>
-    {% for syllabus in syllabi %}
-    <div>
-        <h3>
-            <a href="{{ syllabus.link }}">{{ syllabus.name }}</a>
-            <i>- {{ syllabus.course.staff.last_name}}</i>
-        </h3>
-    </div>
-    {% endfor %}
-</div>
-
-<div>
-    <h2>Class Documents</h2>
-    {% for doc in docs %}
-    <div>
-        <h3>
-            <a href="{{ doc.link }}">{{ doc.name }}</a>
-            <i>- {{ doc.course.staff.last_name}}</i>
-        </h3>
-    </div>
-    {% endfor %}
-</div>
+<div class="legs form-info">
+    <section>
+      <article>
+        <p>
+          <i>
+            “Preach the Word; be ready in season and out of season; 
+            reprove, rebuke, exhort, with great patience and instruction.”
+          </i>
+        </p>
+      </article>
+      <article>
+        <p><b>~ 2 Timothy 4:2</b></p>
+      </article>
+    </section>
+  </div>
 
 {% endblock %}

@@ -1,4 +1,4 @@
-from flask import Blueprint, request, render_template, flash, session, g, redirect, url_for
+from flask import Blueprint, request, render_template, flash, session, g, redirect, url_for, jsonify
 from sqlalchemy.exc import IntegrityError
 from flask_login import login_required, login_user, logout_user, current_user
 import requests
@@ -14,11 +14,11 @@ admin = Blueprint('admin', __name__, template_folder='templates', static_folder=
 
 CURR_USER_KEY = "curr_user"
 
-v = vimeo.VimeoClient(
-                token=f"{access_token}",
-                key=f"{client_id}",
-                secret=f"{client_secret}"
-                )
+# v = vimeo.VimeoClient(
+#                 token=f"{access_token}",
+#                 key=f"{client_id}",
+#                 secret=f"{client_secret}"
+#                 )
 
 
 # Admin login/logout ROUTES =====================================> NEED TO DO! #######
@@ -58,6 +58,17 @@ def handle_admin_login():
 
 #################################################################################
 # Admin general routes:
+@admin.route('/')
+@login_required
+def redirect_admin_home():
+    """Redirect Admin user to dashboard."""
+
+    user = User.query.get(current_user.id)
+    if user.status_id != 1:
+        return redirect("/home/404")
+    else:
+        return redirect("/admin/home")
+
 
 @admin.route('/home')
 @login_required
@@ -232,12 +243,11 @@ def admin_add_class_lecture(class_id):
             staff_id = form.staff_id.data
             
             #    Vimeo API interaction! ===============>
-            vimeo_uri = v.upload(link, data={'name': name, 'description': date})
-
             
 
-            doc = Lecture(class_id=class_id, name=name, link=vimeo_uri, date=date, staff_id=staff_id)
-            db.session.add(doc)
+            ########################################
+            lec = Lecture(class_id=class_id, name=name, link=link, date=date, staff_id=staff_id)
+            db.session.add(lec)
             db.session.commit()
             return redirect(f"/admin/edit/classes/{course.id}")
 
@@ -245,7 +255,14 @@ def admin_add_class_lecture(class_id):
             return render_template("admin/add-lecture.html", form=form, course=course)
 
 
+@admin.route("/test")
+@login_required
+def admin_test():
+    """Test Vimeo API stuff."""
 
+    response = client.get("/me", params={"fields": "uri"})
+    res = response.json()
+    return {"res": res}
 #################################################################################
 # Admin 'edit/' routes:
 
@@ -350,15 +367,9 @@ def admin_edit_class_lecture(class_id, lecture_id):
             name = form.name.data
             link = form.link.data
 
-            v.patch(lec.link, data={'name': name, 'description': date})
-            vimeo_uri = v.replace(
-                video_uri=lec.link,
-                filename=link
-            )
-
             lec.class_id = class_id
             lec.name = name
-            lec.link = vimeo_uri
+            lec.link = link
             db.session.commit()
             return redirect(f"/admin/edit/classes/{class_id}")
 
