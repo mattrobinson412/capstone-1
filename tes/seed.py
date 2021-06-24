@@ -20,12 +20,12 @@ def load_test_data(db):
     admin = Status(status="Admin")
     alum = Status(status="Alumni")
     student = Status(status="Student")
-    donor = Status(status="Donor")
+    # donor = Status(status="Donor")
 
     db.session.add(admin)
     db.session.add(alum)
     db.session.add(student)
-    db.session.add(donor)
+    # db.session.add(donor)
     db.session.commit()
 
     m = User(first_name="Matt",

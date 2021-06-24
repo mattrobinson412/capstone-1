@@ -1,6 +1,7 @@
 from flask import Blueprint, request, render_template, flash, session, g, redirect, url_for, jsonify
 from sqlalchemy.exc import IntegrityError
 from flask_login import login_required, login_user, logout_user, current_user
+from flask_bcrypt import Bcrypt
 import requests
 import sys
 sys.path.append("C:/Users/12392/Desktop/.vscode/Springboard/Projects/capstones/capstone-1/tes")
@@ -255,14 +256,6 @@ def admin_add_class_lecture(class_id):
             return render_template("admin/add-lecture.html", form=form, course=course)
 
 
-@admin.route("/test")
-@login_required
-def admin_test():
-    """Test Vimeo API stuff."""
-
-    response = client.get("/me", params={"fields": "uri"})
-    res = response.json()
-    return {"res": res}
 #################################################################################
 # Admin 'edit/' routes:
 
@@ -484,7 +477,6 @@ def change_admin_settings():
             user.last_name = last_name
             user.phone_number = phone_number
             user.email = email
-            user.password = password
             db.session.commit()
             return redirect(f"/admin/home")
 
