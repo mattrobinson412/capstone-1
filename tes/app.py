@@ -40,7 +40,7 @@ def load_seed_file():
 connect_to_database(app)
 load_seed_file()
 
-app.register_blueprint(api,url_prefix='/api')
+# app.register_blueprint(api,url_prefix='/api')
 app.register_blueprint(home,url_prefix='/home')
 app.register_blueprint(admin,url_prefix='/admin')
 app.register_blueprint(alumni,url_prefix='/alumni')
