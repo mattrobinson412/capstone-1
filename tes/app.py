@@ -19,6 +19,7 @@ import os
 app = Flask(__name__)
 
 login_manager = LoginManager()
+
 login_manager.init_app(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///tes_lib'
