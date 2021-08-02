@@ -42,7 +42,7 @@ def handle_student_login():
 # def handle_student_logout():
 #     """Handle logout function for a Student user."""
 #     user = User.query.get(current_user.id)
-#     if user.status_id != 3:
+#     if user.status.status != "Student":
 #         return redirect("/home/404")
 #     else:
 #         logout_user()
@@ -56,7 +56,7 @@ def show_student_homepage():
     """Shows homepage for a Student User."""
 
     user = User.query.get(current_user.id)
-    if user.status_id != 3:
+    if user.status.status != "Student":
         return redirect("/home/404")
     else:
         return render_template("student/home.html", user=user)
@@ -68,7 +68,7 @@ def handle_student_contact():
     """Shows a form for leaving a message and validates it upon completion."""
 
     user = User.query.get(current_user.id)
-    if user.status_id != 3:
+    if user.status.status != "Student":
         return redirect("/home/404")
     else:
         form = ContactForm()
@@ -96,7 +96,7 @@ def change_student_settings():
     """Allow Student user to see and handle contact forms from the homepage."""
     
     user = User.query.get(current_user.id)
-    if user.status_id != 3:
+    if user.status.status != "Student":
         return redirect("/home/404")
     else:
         form = EditUserForm(obj=user)

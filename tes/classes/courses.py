@@ -1,5 +1,6 @@
 from flask import Blueprint, request, render_template
 from flask import current_app as app
+from flask_login import login_required, login_user, logout_user, current_user
 import requests
 import sys
 sys.path.append("C:/Users/12392/Desktop/.vscode/Springboard/Projects/capstones/capstone-1/tes")
@@ -13,6 +14,7 @@ classes = Blueprint('classes', __name__,
 
 ####### General '/classes/' routes ######################################
 @classes.route('/')
+@login_required
 def show_classes():
     """Show authorized user a list of all classes."""
 
@@ -22,6 +24,7 @@ def show_classes():
 
 
 @classes.route('/<int:class_id>')
+@login_required
 def show_class(class_id):
     """Show authorized user the info pertaining to a certain class."""
 
@@ -34,6 +37,7 @@ def show_class(class_id):
 
 
 @classes.route('/<int:class_id>/lectures/<int:lecture_id>')
+@login_required
 def show_class_lecture(class_id, lecture_id):
     """Show authorized user a lecture for a class."""
 

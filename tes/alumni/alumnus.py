@@ -43,7 +43,7 @@ def handle_alum_login():
 #     """Handle logout function for an alumni user."""
 
 #     user = User.query.get(current_user.id)
-#     if user.status_id != 2:
+#     if user.status.status != "Alumni":
 #         return redirect("/home/404")
 #     else:
 #         logout_user()
@@ -57,7 +57,7 @@ def show_alumni_homepage():
     """Shows homepage for an Alumni User."""
 
     user = User.query.get(current_user.id)
-    if user.status_id != 2:
+    if user.status.status != "Alumni":
         return redirect("/home/404")
     else:
         user = User.query.get(current_user.id)
@@ -70,7 +70,7 @@ def handle_alumni_contact_form():
     """Shows a form for leaving a message and validates it upon completion."""
 
     user = User.query.get(current_user.id)
-    if user.status_id != 2:
+    if user.status.status != "Alumni":
         return redirect("/home/404")
     else:
         form = ContactForm()
@@ -97,7 +97,7 @@ def change_alumni_settings():
     """Allow Alumni user to see and handle contact forms from the homepage."""
     
     user = User.query.get(current_user.id)
-    if user.status_id != 2:
+    if user.status.status != "Alumni":
         return redirect("/home/404")
     else:
         form = EditUserForm(obj=user)

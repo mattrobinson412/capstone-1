@@ -50,7 +50,7 @@ def handle_admin_login():
 #     """Handle logout function for an admin user."""
 
 #     user = User.query.get(current_user.id)
-#     if user.status_id != 1:
+#     if user.status.status != "Admin":
 #         return redirect("/home/404")
 #     else:
 #         logout_user()
@@ -65,7 +65,7 @@ def redirect_admin_home():
     """Redirect Admin user to dashboard."""
 
     user = User.query.get(current_user.id)
-    if user.status_id != 1:
+    if user.status.status != "Admin":
         return redirect("/home/404")
     else:
         return redirect("/admin/home")
@@ -79,7 +79,7 @@ def show_admin_home():
     # IMPLEMENT authentication! ##############
     
     user = User.query.get(current_user.id)
-    if user.status_id != 1:
+    if user.status.status != "Admin":
         return redirect("/home/404")
     ##########################################
     else:
@@ -93,7 +93,7 @@ def admin_add_options():
 
     # IMPLEMENT authentication!!! ######################
     user = User.query.get(current_user.id)
-    if user.status_id != 1:
+    if user.status.status != "Admin":
         return redirect("/home/404")
     else:
     ####################################################
@@ -107,7 +107,7 @@ def admin_handle_inquiries():
     """Allow Admin user to see and handle contact forms from the homepage."""
 
     user = User.query.get(current_user.id)
-    if user.status_id != 1:
+    if user.status.status != "Admin":
         return redirect("/home/404")
     else:
         contacts = Contact.query.all()
@@ -124,7 +124,7 @@ def admin_add_class():
 
     # IMPLEMENT authentication!!! ######################
     user = User.query.get(current_user.id)
-    if user.status_id != 1:
+    if user.status.status != "Admin":
         return redirect("/home/404")
     else:
     ####################################################
@@ -151,7 +151,7 @@ def admin_add_resource():
 
     # IMPLEMENT authentication!!! ######################
     user = User.query.get(current_user.id)
-    if user.status_id != 1:
+    if user.status.status != "Admin":
         return redirect("/home/404")
     else:
     ####################################################
@@ -178,7 +178,7 @@ def admin_add_class_syllabus(class_id):
     """Allow Admin user to add a new syllabus to a specific class."""
 
     user = User.query.get(current_user.id)
-    if user.status_id != 1:
+    if user.status.status != "Admin":
         return redirect("/home/404")
     else:
         course = Class.query.get_or_404(class_id)
@@ -204,7 +204,7 @@ def admin_add_class_doc(class_id):
     """Allow Admin user to add a new document to a specific class."""
 
     user = User.query.get(current_user.id)
-    if user.status_id != 1:
+    if user.status.status != "Admin":
         return redirect("/home/404")
     else:
         course = Class.query.get_or_404(class_id)
@@ -231,7 +231,7 @@ def admin_add_class_lecture(class_id):
     """Allow Admin user to add a new lecture to a specific class."""
 
     user = User.query.get(current_user.id)
-    if user.status_id != 1:
+    if user.status.status != "Admin":
         return redirect("/home/404")
     else:
         form = AddLectureForm()
@@ -265,7 +265,7 @@ def admin_edit_options():
     """Allow Admin user to choose to create a new 'Resource' or 'Class' instance."""
 
     user = User.query.get(current_user.id)
-    if user.status_id != 1:
+    if user.status.status != "Admin":
         return redirect("/home/404")
     else:
         return render_template("admin/edit.html")
@@ -277,7 +277,7 @@ def admin_edit_classes():
     """Allow Admin user to choose a 'Class' instance to edit."""
 
     user = User.query.get(current_user.id)
-    if user.status_id != 1:
+    if user.status.status != "Admin":
         return redirect("/home/404")
     else:
         classes = Class.query.all()
@@ -291,7 +291,7 @@ def admin_edit_resources():
     """Allow Admin user to choose a 'Resource' instance to edit."""
 
     user = User.query.get(current_user.id)
-    if user.status_id != 1:
+    if user.status.status != "Admin":
         return redirect("/home/404")
     else:
         resources = Resource.query.all()
@@ -304,7 +304,7 @@ def admin_edit_class(class_id):
     """Allow Admin user to edit everything pertaining to a 'Class' instance."""
 
     user = User.query.get(current_user.id)
-    if user.status_id != 1:
+    if user.status.status != "Admin":
         return redirect("/home/404")
     else:
         course = Class.query.get_or_404(class_id)
@@ -321,7 +321,7 @@ def admin_edit_class_info(class_id):
     """Allows Admin user to edit a classes' general info."""
 
     user = User.query.get(current_user.id)
-    if user.status_id != 1:
+    if user.status.status != "Admin":
         return redirect("/home/404")
     else:
         course = Class.query.get_or_404(class_id)
@@ -348,7 +348,7 @@ def admin_edit_class_lecture(class_id, lecture_id):
     """Allows Admin user to edit a lecture from a class."""
 
     user = User.query.get(current_user.id)
-    if user.status_id != 1:
+    if user.status.status != "Admin":
         return redirect("/home/404")
     else:
         course = Class.query.get_or_404(class_id)
@@ -376,7 +376,7 @@ def admin_edit_class_syllabus(class_id, syllabus_id):
     """Allow Admin user to edit a class syllabus."""
 
     user = User.query.get(current_user.id)
-    if user.status_id != 1:
+    if user.status.status != "Admin":
         return redirect("/home/404")
     else:
         course = Class.query.get_or_404(class_id)
@@ -404,7 +404,7 @@ def admin_edit_class_doc(class_id, doc_id):
     """Allow Admin user to edit a class document."""
 
     user = User.query.get(current_user.id)
-    if user.status_id != 1:
+    if user.status.status != "Admin":
         return redirect("/home/404")
     else:
         course = Class.query.get_or_404(class_id)
@@ -432,7 +432,7 @@ def admin_edit_resource(resource_id):
     """Allows Admin user to edit the info of a 'Resource' instance."""
 
     user = User.query.get(current_user.id)
-    if user.status_id != 1:
+    if user.status.status != "Admin":
         return redirect("/home/404")
     else:
         res = Resource.query.get_or_404(resource_id)
@@ -461,7 +461,7 @@ def change_admin_settings():
     """Allow Admin user to see and handle contact forms from the homepage."""
     
     user = User.query.get(current_user.id)
-    if user.status_id != 1:
+    if user.status.status != "Admin":
         return redirect("/home/404")
     else:
         form = EditUserForm(obj=user)
