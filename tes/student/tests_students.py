@@ -1,4 +1,4 @@
-"""Admin View tests."""
+"""Student View tests."""
 
 import os
 
@@ -23,8 +23,8 @@ app.config['TESTING'] = True
 app.config['DEBUG_TB_HOSTS'] = ['dont-show-debug-toolbar']
 
 
-class AdminViewTestCase(TestCase):
-    """Test views for admins."""
+class StudentViewTestCase(TestCase):
+    """Test views for students."""
 
     def setUp(self):
         """Create test client, add sample data."""
@@ -45,7 +45,7 @@ class AdminViewTestCase(TestCase):
                 'nag',
                 '54321',
                 'calm@gmail.com',
-                1
+                3
             )
         u1 = User.register(
                 'Bam',
@@ -53,7 +53,7 @@ class AdminViewTestCase(TestCase):
                 'gan',
                 '12345',
                 'hype@gmail.com',
-                2
+                1
             )
 
         db.session.add(u)
@@ -68,18 +68,18 @@ class AdminViewTestCase(TestCase):
     
     # ===============================================#
 
-    def test_handle_admin_login(self):
+    def test_handle_student_login(self):
         with app.test_client() as client:
         
-            resp = client.get('/admin/login')
+            resp = client.get('/student/login')
             html = resp.get_data(as_text=True)
 
             self.assertEqual(resp.status_code, 200)
     
-    def test_handle_admin_login(self):
+    def test_handle_student_login(self):
         with app.test_client() as client:
         
-            resp = client.post('/admin/login', data={'email':'calm@gmail.com', 'password':'nag'})
+            resp = client.post('/student/login', data={'email':'calm@gmail.com', 'password':'nag'})
             html = resp.get_data(as_text=True)
 
             self.assertEqual(resp.status_code, 200)

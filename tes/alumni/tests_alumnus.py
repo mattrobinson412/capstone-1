@@ -1,6 +1,8 @@
-"""Admin View tests."""
+"""Alumni View tests."""
 
 import os
+import sys
+sys.path.append("../parentdirectory")
 
 from unittest import TestCase
 from sqlalchemy import exc
@@ -23,7 +25,7 @@ app.config['TESTING'] = True
 app.config['DEBUG_TB_HOSTS'] = ['dont-show-debug-toolbar']
 
 
-class AdminViewTestCase(TestCase):
+class AlumniViewTestCase(TestCase):
     """Test views for admins."""
 
     def setUp(self):
@@ -45,7 +47,7 @@ class AdminViewTestCase(TestCase):
                 'nag',
                 '54321',
                 'calm@gmail.com',
-                1
+                2
             )
         u1 = User.register(
                 'Bam',
@@ -53,7 +55,7 @@ class AdminViewTestCase(TestCase):
                 'gan',
                 '12345',
                 'hype@gmail.com',
-                2
+                1
             )
 
         db.session.add(u)
@@ -71,7 +73,7 @@ class AdminViewTestCase(TestCase):
     def test_handle_admin_login(self):
         with app.test_client() as client:
         
-            resp = client.get('/admin/login')
+            resp = client.get('/alumni/login')
             html = resp.get_data(as_text=True)
 
             self.assertEqual(resp.status_code, 200)
@@ -79,7 +81,7 @@ class AdminViewTestCase(TestCase):
     def test_handle_admin_login(self):
         with app.test_client() as client:
         
-            resp = client.post('/admin/login', data={'email':'calm@gmail.com', 'password':'nag'})
+            resp = client.post('/alumni/login', data={'email':'calm@gmail.com', 'password':'nag'})
             html = resp.get_data(as_text=True)
 
             self.assertEqual(resp.status_code, 200)
